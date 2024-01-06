@@ -5,7 +5,7 @@ const grant = () => {
   // 构建OAuth2.0授权链接
   const clientId = 'mall-id';
   const redirectUri = 'http://localhost:9999/home';
-  const authorizationUrl = `http://localhost:8080/user/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
+  const authorizationUrl = `http://localhost:8080/user/authorize1?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
   // const authorizationUrl = `http://localhost:8080/user/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
   // 重定向到授权页面
   window.location.href = authorizationUrl;
