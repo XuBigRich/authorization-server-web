@@ -87,20 +87,20 @@ const loginHandler = () => {
   display: flex;
   max-width: 800px; /* 根据需要调整最大宽度 */
   margin: 0 auto;   /* 使容器水平居中 */
-  height: 100%;   /* 撑满父容器 */
+  height: 100vh;    /* 将容器高度设置为视口高度 */
 }
 
 .loginBgImg, .content {
-  flex: 1;              /* 确保背景图片和表单各占50%宽度 */
-  display: flex;        /* 使子元素居中 */
-  justify-content: center; /* 水平居中 */
-  align-items: center;    /* 垂直居中 */
+  flex: 1;                    /* 确保背景图片和表单各占50%宽度 */
+  display: flex;              /* 使子元素居中 */
+  justify-content: center;    /* 水平居中 */
+  align-items: center;        /* 垂直居中 */
 }
 
 .content {
-  flex-direction: column;
+  flex-direction: column;     /* 使内容垂直排列 */
   padding: 20px;
-  background-color: white; /* 可根据需求调整背景颜色 */
+  background-color: white;    /* 可根据需求调整背景颜色 */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 </style>
