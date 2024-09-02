@@ -5,14 +5,19 @@ import request from './utils/request';
 export const demo = data => request({
     url: '/demo', method: 'post', data
 });
+
+/* 重定向 */
+export const authorize1 = data => request({
+    url: '/api-authorization/authorize1', method: 'get', params: data
+});
 // 登陆
 export const login = (data) => request({
-    url: '/user/login', method: 'post', data
+    url: '/api-authorization/login', method: 'post', data
 });
 
 
 export const removeLogin = () => request({
-    url: '/user/logout', method: 'get',
+    url: '/api-authorization/logout', method: 'get',
 });
 
 //订单列表

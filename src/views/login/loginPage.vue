@@ -33,6 +33,7 @@
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="loginHandler">登陆</el-button>
+              <el-button type="primary" @click="authorize">测试</el-button>
             </el-form-item>
           </el-form>
         </el-tab-pane>
@@ -52,10 +53,10 @@
 
 <script setup>
 import store from '../../store';
-import {login} from "@/api/api";
+import {login, authorize1} from "@/api/api";
 import {reactive, ref} from 'vue';
 import {ElMessage} from 'element-plus';
-import {useRouter} from 'vue-router';
+// import {useRouter} from 'vue-router';
 import bgImg from '@/assets/image/login/bgImg.png';
 import github from '@/assets/image/login/github.png';
 import vivo from '@/assets/image/login/vivo.png';
@@ -63,7 +64,11 @@ import vivo from '@/assets/image/login/vivo.png';
 const activeName = ref('first');
 const userNameLoginParam = reactive({username: '', password: ''});
 const phoneLoginParam = reactive({phoneNumber: '', code: ''});
-const router = useRouter();
+let redirectUri = ref({
+  'redirect_uri': "http://gonkamasn.com/"
+});
+
+// const router = useRouter();
 
 
 // const loginHandler = async () => {
@@ -77,17 +82,26 @@ const router = useRouter();
 //     ElMessage.warning(err.msg);
 //   }
 // };
-
+const authorize = () => {
+  console.log('执行')
+  authorize1(redirectUri.value).then(res => {
+    console.log(res)
+    window.location.href = res.data;
+  }).catch(err => {
+    console.log(err)
+  })
+}
 const loginHandler = () => {
   login(userNameLoginParam).then(response => {
-    console.log('Request successful', response.data);
+    console.log(response);
+    window.location.href = response.data;
     store.commit('USER_TOKEN', response.data);
-    localStorage.setItem('CLOUD-AFTER-CLASS-TOKEN', response.data);
+    // localStorage.setItem('CLOUD-AFTER-CLASS-TOKEN', response.data);
     ElMessage.success('登录成功');
-    // window.location.href = res.callbackUrl;
-    router.push("/grant");
+    // window.location.href = response.callbackUrl;
   }).catch(error => {
     console.error('Request failed', error);
+    // router.push("/grant");
   });
 }
 </script>
