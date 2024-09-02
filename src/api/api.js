@@ -13,6 +13,7 @@ export const authorize1 = data => request({
 // 登陆
 export const login = (data) => request({
     url: '/api-authorization/login', method: 'post', data
+    // url: '/login', method: 'post', data
 });
 
 
