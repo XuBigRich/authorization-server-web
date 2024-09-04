@@ -4,11 +4,11 @@ import axios from 'axios';
 // import store from '../../store';
 
 const service = axios.create({
+    baseURL: process.env.VUE_APP_BASE_API,
     timeout: 1000 * 60,
     headers: {
         'Content-Type': 'application/json;charset=utf-8'
-    },
-    baseURL: process.env.VUE_APP_BASE_API
+    }
 });
 
 function getCookie(name) {
