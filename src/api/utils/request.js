@@ -8,8 +8,7 @@ const service = axios.create({
     headers: {
         'Content-Type': 'application/json;charset=utf-8'
     },
-    // baseURL: "http://127.0.0.1:6688",
-    baseURL: "https://api.gonkamasn.com"
+    baseURL: process.env.VUE_APP_BASE_API
 });
 
 function getCookie(name) {
