@@ -8,27 +8,35 @@ const service = axios.create({
     headers: {
         'Content-Type': 'application/json;charset=utf-8'
     },
-    // baseURL: "http://127.0.0.1:8882"
+    // baseURL: "http://127.0.0.1:6688",
     baseURL: "https://api.gonkamasn.com"
 });
 
+function getCookie(name) {
+    let value = "; " + document.cookie;
+    console.log(value)
+    let parts = value.split("; " + name + "=");
+    console.log(parts)
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
 // 请求拦截器
-// service.interceptors.request.use(
-//     config => {
-//         // 请求头添加token
-//         if (localStorage.getItem('CLOUD-AFTER-CLASS-TOKEN')) {
-//             config.headers.Authorization = localStorage.getItem('CLOUD-AFTER-CLASS-TOKEN');
-//         }
-//         config.withCredentials = true;
-//         return config;
-//     },
-//     error => {
-//         console.log("记录1err："+error)
-//         return Promise.reject(error);
-//     }
-// );
-//
-// // 响应拦截器， 路由跳转 是先请求，再跳转， 所以 拦截器 会先执行， 路由守卫后执行
+service.interceptors.request.use(
+    config => {
+        console.log("1");
+        const token = getCookie('PIAO-888-TOKEN');
+        if (token) {
+            console.log(token);
+            config.headers.Authorization = "bearer " + token;
+        }
+        return config;
+    },
+    error => {
+        console.log("记录1err：" + error);
+        return Promise.reject(error);
+    }
+);
+// 响应拦截器， 路由跳转 是先请求，再跳转， 所以 拦截器 会先执行， 路由守卫后执行
 // service.interceptors.response.use(
 //     res => {
 //         console.log("记录："+res)

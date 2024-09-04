@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-import store from '../../store';
+// import store from '../../store';
 import {login, authorize1} from "@/api/api";
 import {reactive, ref} from 'vue';
 import {ElMessage} from 'element-plus';
@@ -95,7 +95,7 @@ const loginHandler = () => {
   login(userNameLoginParam).then(response => {
     console.log(response);
     window.location.href = response.data;
-    store.commit('USER_TOKEN', response.data);
+    // store.commit('USER_TOKEN', response.data);
     // localStorage.setItem('CLOUD-AFTER-CLASS-TOKEN', response.data);
     ElMessage.success('登录成功');
     // window.location.href = response.callbackUrl;
